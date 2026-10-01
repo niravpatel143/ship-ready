@@ -1,0 +1,29 @@
+<?php
+
+namespace {{ namespace }};
+
+use ShipReady\Checks\AbstractCheck;
+use ShipReady\Checks\CheckMeta;
+use ShipReady\Support\Context;
+
+#[CheckMeta(
+    id: '{{ id }}',
+    title: '{{ title }}',
+    category: '{{ category }}',
+    severity: '{{ severity }}',
+)]
+final class {{ class }} extends AbstractCheck
+{
+    public function run(Context $context): iterable
+    {
+        // TODO: implement check
+        // Yield Finding objects using $this->finding() helper:
+        //
+        // yield $this->finding(
+        //     message: 'Description of the issue',
+        //     file: '/path/to/file.php',
+        //     line: 42,
+        //     fix: 'How to fix this issue',
+        // );
+    }
+}

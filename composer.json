@@ -1,0 +1,39 @@
+{
+  "name": "yourvendor/ship-ready",
+  "description": "Security, performance and production-readiness auditor for Laravel 9–13+",
+  "keywords": ["laravel", "security", "audit", "static-analysis", "sarif", "production"],
+  "license": "MIT",
+  "require": {
+    "php": "^8.0",
+    "illuminate/contracts": "^9.0|^10.0|^11.0|^12.0|^13.0",
+    "illuminate/support": "^9.0|^10.0|^11.0|^12.0|^13.0",
+    "illuminate/console": "^9.0|^10.0|^11.0|^12.0|^13.0",
+    "nikic/php-parser": "^4.0|^5.0",
+    "spatie/laravel-package-tools": "^1.9",
+    "symfony/finder": "^6.0|^7.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0|^11.0",
+    "pestphp/pest": "^2.0|^3.0",
+    "pestphp/pest-plugin-laravel": "^2.0|^3.0"
+  },
+  "autoload": {
+    "psr-4": { "ShipReady\\": "src/" }
+  },
+  "autoload-dev": {
+    "psr-4": { "ShipReady\\Tests\\": "tests/" }
+  },
+  "extra": {
+    "laravel": {
+      "providers": ["ShipReady\\ShipReadyServiceProvider"]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "pestphp/pest": true
+    }
+  }
+}
