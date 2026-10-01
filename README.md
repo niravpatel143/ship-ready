@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ShipReady
 
 Security, performance, and production-readiness auditor for Laravel 9–13+.
@@ -165,3 +166,4 @@ SARIF upload:
 ## License
 
 MIT
+# ship-ready
