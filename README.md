@@ -6,7 +6,7 @@ Security, performance, and production-readiness auditor for Laravel 9–13+.
 ## Installation
 
 ```bash
-composer require yourvendor/ship-ready --dev
+composer require nivoin/ship-ready --dev
 ```
 
 ## Usage

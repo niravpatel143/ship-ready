@@ -1,5 +1,5 @@
 {
-  "name": "yourvendor/ship-ready",
+  "name": "nivoin/ship-ready",
   "description": "Security, performance and production-readiness auditor for Laravel 9–13+",
   "keywords": ["laravel", "security", "audit", "static-analysis", "sarif", "production"],
   "license": "MIT",

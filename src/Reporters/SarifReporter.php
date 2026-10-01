@@ -31,7 +31,7 @@ final class SarifReporter implements Reporter
                         'driver' => [
                             'name'            => 'ShipReady',
                             'version'         => '1.0.0',
-                            'informationUri'  => 'https://github.com/yourvendor/ship-ready',
+                            'informationUri'  => 'https://github.com/nivoin/ship-ready',
                             'rules'           => $rules,
                         ],
                     ],
