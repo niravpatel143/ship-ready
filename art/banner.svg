@@ -1,182 +1,462 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="60%" stop-color="#1e293b"/>
-      <stop offset="100%" stop-color="#0f172a"/>
+    <!-- Backgrounds -->
+    <radialGradient id="bgMain" cx="35%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#0d1a2e"/>
+      <stop offset="100%" stop-color="#060c14"/>
+    </radialGradient>
+    <linearGradient id="bgOverlay" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a1628" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#040810" stop-opacity="0.6"/>
     </linearGradient>
-    <linearGradient id="shieldGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#22c55e"/>
-      <stop offset="100%" stop-color="#16a34a"/>
+
+    <!-- Glows -->
+    <radialGradient id="greenOrb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#22c55e" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blueOrb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="purpleOrb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Card gradients -->
+    <linearGradient id="cardGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#052010"/>
+      <stop offset="100%" stop-color="#021508"/>
     </linearGradient>
+    <linearGradient id="cardBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#051225"/>
+      <stop offset="100%" stop-color="#030b18"/>
+    </linearGradient>
+    <linearGradient id="cardPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#130a22"/>
+      <stop offset="100%" stop-color="#0a0614"/>
+    </linearGradient>
+    <linearGradient id="cardOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a0d02"/>
+      <stop offset="100%" stop-color="#100801"/>
+    </linearGradient>
+
+    <!-- Terminal -->
     <linearGradient id="termBg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#1e2535"/>
-      <stop offset="100%" stop-color="#141824"/>
+      <stop offset="0%" stop-color="#0f1722"/>
+      <stop offset="100%" stop-color="#080d14"/>
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
+    <linearGradient id="termHeader" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a2332"/>
+      <stop offset="100%" stop-color="#141c28"/>
+    </linearGradient>
+
+    <!-- Green title gradient -->
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+
+    <!-- Score bar -->
+    <linearGradient id="scoreBarFilled" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f87171"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="shieldGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="softglow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
+    <filter id="textGlow" x="-10%" y="-30%" width="120%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-      <circle cx="1.5" cy="1.5" r="1" fill="#ffffff" opacity="0.04"/>
+    <filter id="cardGlow" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Dot grid -->
+    <pattern id="grid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1" fill="#ffffff" opacity="0.025"/>
     </pattern>
+
+    <!-- Clip for terminal -->
+    <clipPath id="termClip">
+      <rect x="808" y="28" width="370" height="546" rx="14"/>
+    </clipPath>
   </defs>
 
-  <!-- Background -->
-  <rect width="1200" height="500" fill="url(#bg)"/>
-  <rect width="1200" height="500" fill="url(#dots)"/>
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- BACKGROUND                                     -->
+  <!-- ══════════════════════════════════════════════ -->
+  <rect width="1200" height="600" fill="url(#bgMain)"/>
+  <rect width="1200" height="600" fill="url(#bgOverlay)"/>
+  <rect width="1200" height="600" fill="url(#grid)"/>
 
-  <!-- Glow orb behind shield -->
-  <ellipse cx="210" cy="240" rx="140" ry="140" fill="#22c55e" opacity="0.06"/>
+  <!-- Ambient glow orbs -->
+  <ellipse cx="160" cy="200" rx="220" ry="200" fill="url(#greenOrb)"/>
+  <ellipse cx="580" cy="520" rx="180" ry="120" fill="url(#blueOrb)"/>
+  <ellipse cx="760" cy="100" rx="160" ry="120" fill="url(#purpleOrb)"/>
 
-  <!-- Shield shape -->
-  <g transform="translate(130, 140)" filter="url(#softglow)">
-    <path d="M80 0 L160 28 L160 88 Q160 148 80 175 Q0 148 0 88 L0 28 Z" fill="#22c55e" opacity="0.12"/>
-    <path d="M80 8 L152 33 L152 88 Q152 142 80 166 Q8 142 8 88 L8 33 Z" fill="none" stroke="#22c55e" stroke-width="2.5" opacity="0.8"/>
-    <!-- Lock body -->
-    <rect x="52" y="90" width="56" height="44" rx="6" fill="#22c55e" opacity="0.9"/>
+  <!-- Top accent line with gradient -->
+  <defs>
+    <linearGradient id="topLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#22c55e" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#3b82f6" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1200" height="2" fill="url(#topLine)"/>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SHIELD ICON                                    -->
+  <!-- ══════════════════════════════════════════════ -->
+  <g transform="translate(44, 56)" filter="url(#shieldGlow)">
+    <!-- Outer glow ring -->
+    <ellipse cx="72" cy="88" rx="72" ry="78" fill="#22c55e" opacity="0.06"/>
+    <!-- Shield outer path -->
+    <path d="M72 6 L140 32 L140 90 Q140 152 72 178 Q4 152 4 90 L4 32 Z"
+          fill="#22c55e" opacity="0.06"/>
+    <path d="M72 6 L140 32 L140 90 Q140 152 72 178 Q4 152 4 90 L4 32 Z"
+          fill="none" stroke="#22c55e" stroke-width="2" stroke-opacity="0.75"/>
+    <!-- Shield inner fill -->
+    <path d="M72 16 L130 38 L130 90 Q130 146 72 168 Q14 146 14 90 L14 38 Z"
+          fill="#22c55e" opacity="0.04"/>
     <!-- Lock shackle -->
-    <path d="M62 90 L62 72 Q62 52 80 52 Q98 52 98 72 L98 90" fill="none" stroke="#22c55e" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
-    <!-- Lock keyhole -->
-    <circle cx="80" cy="108" r="7" fill="#0f172a"/>
-    <rect x="77" y="108" width="6" height="12" rx="2" fill="#0f172a"/>
+    <path d="M54 90 L54 70 Q54 48 72 48 Q90 48 90 70 L90 90"
+          fill="none" stroke="#22c55e" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+    <!-- Lock body -->
+    <rect x="44" y="90" width="56" height="46" rx="8" fill="#22c55e" opacity="0.88"/>
+    <!-- Keyhole -->
+    <circle cx="72" cy="108" r="7" fill="#060c14"/>
+    <rect x="68.5" y="108" width="7" height="13" rx="2.5" fill="#060c14"/>
+    <!-- Shield checkmark hint -->
+    <text x="72" y="160" fill="#22c55e" font-size="11" text-anchor="middle"
+          font-family="monospace" opacity="0.5">v1.1.0</text>
   </g>
 
-  <!-- ShipReady wordmark -->
-  <text x="330" y="215" fill="#f8fafc" font-size="72" font-weight="700"
-        font-family="'Segoe UI', Arial, sans-serif" letter-spacing="-3">
-    Ship<tspan fill="#22c55e">Ready</tspan>
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- TITLE & TAGLINE                               -->
+  <!-- ══════════════════════════════════════════════ -->
+  <text x="192" y="124" fill="#f0f6fc" font-size="82" font-weight="800"
+        font-family="'Segoe UI', system-ui, -apple-system, sans-serif" letter-spacing="-3">
+    Ship<tspan fill="url(#greenGrad)" filter="url(#textGlow)">Ready</tspan>
   </text>
 
-  <!-- Tagline -->
-  <text x="333" y="258" fill="#94a3b8" font-size="20"
-        font-family="'Segoe UI', Arial, sans-serif" letter-spacing="0.3">
-    Static security &amp; production-readiness auditor for Laravel · MCP-ready
+  <text x="196" y="158" fill="#64748b" font-size="17.5"
+        font-family="'Segoe UI', system-ui, sans-serif" letter-spacing="0.4">
+    Static security &amp; production-readiness auditor for Laravel
   </text>
 
-  <!-- Category pills -->
-  <!-- Security -->
-  <rect x="333" y="285" width="118" height="30" rx="15" fill="#ef444422" stroke="#ef444440" stroke-width="1"/>
-  <text x="392" y="305" fill="#f87171" font-size="12" text-anchor="middle"
-        font-family="'Segoe UI', Arial, sans-serif" font-weight="600">SECURITY</text>
+  <!-- Version badge -->
+  <rect x="196" y="170" width="60" height="20" rx="10" fill="#22c55e" fill-opacity="0.12" stroke="#22c55e" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="226" y="184" fill="#4ade80" font-size="10.5" text-anchor="middle" font-weight="600"
+        font-family="'Segoe UI', system-ui, sans-serif">v 1.1.0</text>
 
-  <!-- Performance -->
-  <rect x="461" y="285" width="138" height="30" rx="15" fill="#f59e0b22" stroke="#f59e0b40" stroke-width="1"/>
-  <text x="530" y="305" fill="#fbbf24" font-size="12" text-anchor="middle"
-        font-family="'Segoe UI', Arial, sans-serif" font-weight="600">PERFORMANCE</text>
+  <rect x="264" y="170" width="90" height="20" rx="10" fill="#3b82f6" fill-opacity="0.10" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="309" y="184" fill="#60a5fa" font-size="10.5" text-anchor="middle" font-weight="600"
+        font-family="'Segoe UI', system-ui, sans-serif">MCP READY</text>
 
-  <!-- Reliability -->
-  <rect x="609" y="285" width="128" height="30" rx="15" fill="#3b82f622" stroke="#3b82f640" stroke-width="1"/>
-  <text x="673" y="305" fill="#60a5fa" font-size="12" text-anchor="middle"
-        font-family="'Segoe UI', Arial, sans-serif" font-weight="600">RELIABILITY</text>
+  <rect x="362" y="170" width="72" height="20" rx="10" fill="#f97316" fill-opacity="0.10" stroke="#f97316" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="398" y="184" fill="#fb923c" font-size="10.5" text-anchor="middle" font-weight="600"
+        font-family="'Segoe UI', system-ui, sans-serif">ZERO CONFIG</text>
 
-  <!-- Version -->
-  <rect x="747" y="285" width="138" height="30" rx="15" fill="#a855f722" stroke="#a855f740" stroke-width="1"/>
-  <text x="816" y="305" fill="#c084fc" font-size="12" text-anchor="middle"
-        font-family="'Segoe UI', Arial, sans-serif" font-weight="600">VERSION-SPECIFIC</text>
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- STAT CARDS ROW                                -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- Card 1 — 111 Checks -->
+  <g>
+    <rect x="196" y="208" width="128" height="72" rx="12" fill="url(#cardGreen)" stroke="#22c55e" stroke-width="1" stroke-opacity="0.35"/>
+    <text x="260" y="238" fill="#22c55e" font-size="32" font-weight="800" text-anchor="middle"
+          font-family="'Segoe UI', system-ui, sans-serif">111</text>
+    <text x="260" y="264" fill="#374151" font-size="11" text-anchor="middle" font-weight="700" letter-spacing="2"
+          font-family="'Segoe UI', system-ui, sans-serif">CHECKS</text>
+  </g>
 
-  <!-- Stats row -->
-  <text x="335" y="350" fill="#475569" font-size="15"
-        font-family="'Segoe UI', Arial, sans-serif">
-    111 checks
-  </text>
-  <circle cx="415" cy="344" r="2" fill="#334155"/>
-  <text x="425" y="350" fill="#475569" font-size="15"
-        font-family="'Segoe UI', Arial, sans-serif">
-    PHP 8.2+
-  </text>
-  <circle cx="493" cy="344" r="2" fill="#334155"/>
-  <text x="503" y="350" fill="#475569" font-size="15"
-        font-family="'Segoe UI', Arial, sans-serif">
-    Laravel 11, 12 &amp; 13
-  </text>
-  <circle cx="602" cy="344" r="2" fill="#334155"/>
-  <text x="612" y="350" fill="#475569" font-size="15"
-        font-family="'Segoe UI', Arial, sans-serif">
-    MIT License
-  </text>
+  <!-- Card 2 — 11 Commands -->
+  <g>
+    <rect x="336" y="208" width="128" height="72" rx="12" fill="url(#cardBlue)" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.35"/>
+    <text x="400" y="238" fill="#60a5fa" font-size="32" font-weight="800" text-anchor="middle"
+          font-family="'Segoe UI', system-ui, sans-serif">11</text>
+    <text x="400" y="264" fill="#374151" font-size="11" text-anchor="middle" font-weight="700" letter-spacing="2"
+          font-family="'Segoe UI', system-ui, sans-serif">COMMANDS</text>
+  </g>
 
-  <!-- Vertical divider -->
-  <line x1="920" y1="60" x2="920" y2="440" stroke="#ffffff0d" stroke-width="1"/>
+  <!-- Card 3 — 9 Categories -->
+  <g>
+    <rect x="476" y="208" width="128" height="72" rx="12" fill="url(#cardPurple)" stroke="#a855f7" stroke-width="1" stroke-opacity="0.35"/>
+    <text x="540" y="238" fill="#c084fc" font-size="32" font-weight="800" text-anchor="middle"
+          font-family="'Segoe UI', system-ui, sans-serif">9</text>
+    <text x="540" y="264" fill="#374151" font-size="11" text-anchor="middle" font-weight="700" letter-spacing="2"
+          font-family="'Segoe UI', system-ui, sans-serif">CATEGORIES</text>
+  </g>
 
-  <!-- Terminal window -->
-  <rect x="945" y="55" width="240" height="390" rx="10" fill="url(#termBg)" stroke="#ffffff12" stroke-width="1"/>
+  <!-- Card 4 — MCP AI -->
+  <g>
+    <rect x="616" y="208" width="128" height="72" rx="12" fill="url(#cardOrange)" stroke="#f97316" stroke-width="1" stroke-opacity="0.35"/>
+    <text x="680" y="236" fill="#fb923c" font-size="24" font-weight="800" text-anchor="middle"
+          font-family="'Segoe UI', system-ui, sans-serif">MCP</text>
+    <text x="680" y="252" fill="#fb923c" font-size="11" font-weight="600" text-anchor="middle"
+          font-family="'Segoe UI', system-ui, sans-serif">Server</text>
+    <text x="680" y="268" fill="#374151" font-size="10" text-anchor="middle" font-weight="700" letter-spacing="1.5"
+          font-family="'Segoe UI', system-ui, sans-serif">AI AGENTS</text>
+  </g>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- CATEGORY PILLS — ROW 1                        -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SECURITY -->
+  <rect x="196" y="302" width="82" height="24" rx="12" fill="#ef444412" stroke="#ef444445" stroke-width="1"/>
+  <text x="237" y="318" fill="#f87171" font-size="10.5" text-anchor="middle" font-weight="700" letter-spacing="0.5"
+        font-family="'Segoe UI', system-ui, sans-serif">SECURITY</text>
+
+  <!-- PERFORMANCE -->
+  <rect x="287" y="302" width="105" height="24" rx="12" fill="#f59e0b12" stroke="#f59e0b45" stroke-width="1"/>
+  <text x="339" y="318" fill="#fbbf24" font-size="10.5" text-anchor="middle" font-weight="700" letter-spacing="0.5"
+        font-family="'Segoe UI', system-ui, sans-serif">PERFORMANCE</text>
+
+  <!-- RELIABILITY -->
+  <rect x="401" y="302" width="95" height="24" rx="12" fill="#3b82f612" stroke="#3b82f645" stroke-width="1"/>
+  <text x="448" y="318" fill="#60a5fa" font-size="10.5" text-anchor="middle" font-weight="700" letter-spacing="0.5"
+        font-family="'Segoe UI', system-ui, sans-serif">RELIABILITY</text>
+
+  <!-- VERSION -->
+  <rect x="505" y="302" width="72" height="24" rx="12" fill="#a855f712" stroke="#a855f745" stroke-width="1"/>
+  <text x="541" y="318" fill="#c084fc" font-size="10.5" text-anchor="middle" font-weight="700" letter-spacing="0.5"
+        font-family="'Segoe UI', system-ui, sans-serif">VERSION</text>
+
+  <!-- OCTANE -->
+  <rect x="586" y="302" width="68" height="24" rx="12" fill="#f9731612" stroke="#f9731645" stroke-width="1"/>
+  <text x="620" y="318" fill="#fb923c" font-size="10.5" text-anchor="middle" font-weight="700" letter-spacing="0.5"
+        font-family="'Segoe UI', system-ui, sans-serif">OCTANE</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- CATEGORY PILLS — ROW 2                        -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- QUEUE -->
+  <rect x="196" y="336" width="62" height="24" rx="12" fill="#06b6d412" stroke="#06b6d445" stroke-width="1"/>
+  <text x="227" y="352" fill="#22d3ee" font-size="10.5" text-anchor="middle" font-weight="700" letter-spacing="0.5"
+        font-family="'Segoe UI', system-ui, sans-serif">QUEUE</text>
+
+  <!-- TENANCY -->
+  <rect x="267" y="336" width="76" height="24" rx="12" fill="#ec489912" stroke="#ec489945" stroke-width="1"/>
+  <text x="305" y="352" fill="#f472b6" font-size="10.5" text-anchor="middle" font-weight="700" letter-spacing="0.5"
+        font-family="'Segoe UI', system-ui, sans-serif">TENANCY</text>
+
+  <!-- PACKAGES -->
+  <rect x="352" y="336" width="82" height="24" rx="12" fill="#6366f112" stroke="#6366f145" stroke-width="1"/>
+  <text x="393" y="352" fill="#818cf8" font-size="10.5" text-anchor="middle" font-weight="700" letter-spacing="0.5"
+        font-family="'Segoe UI', system-ui, sans-serif">PACKAGES</text>
+
+  <!-- INFRA -->
+  <rect x="443" y="336" width="66" height="24" rx="12" fill="#64748b12" stroke="#64748b45" stroke-width="1"/>
+  <text x="476" y="352" fill="#94a3b8" font-size="10.5" text-anchor="middle" font-weight="700" letter-spacing="0.5"
+        font-family="'Segoe UI', system-ui, sans-serif">INFRA</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- FEATURE HIGHLIGHTS                            -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- Row 1 -->
+  <text x="197" y="394" fill="#1e3a2a" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">●</text>
+  <text x="213" y="394" fill="#4ade80" font-size="13" font-weight="600"
+        font-family="'Segoe UI', system-ui, sans-serif">MCP server</text>
+  <text x="293" y="394" fill="#374151" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">for Claude Code &amp; Cursor</text>
+
+  <text x="197" y="414" fill="#1e2a3a" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">●</text>
+  <text x="213" y="414" fill="#60a5fa" font-size="13" font-weight="600"
+        font-family="'Segoe UI', system-ui, sans-serif">Live HTTP probe</text>
+  <text x="313" y="414" fill="#374151" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">HSTS, CSP, cookies, paths</text>
+
+  <text x="197" y="434" fill="#2a1e3a" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">●</text>
+  <text x="213" y="434" fill="#c084fc" font-size="13" font-weight="600"
+        font-family="'Segoe UI', system-ui, sans-serif">Env drift detect</text>
+  <text x="313" y="434" fill="#374151" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">compare .env files safely</text>
+
+  <text x="197" y="454" fill="#2a1e0a" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">●</text>
+  <text x="213" y="454" fill="#fb923c" font-size="13" font-weight="600"
+        font-family="'Segoe UI', system-ui, sans-serif">Deploy gates</text>
+  <text x="287" y="454" fill="#374151" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">Forge · Cloud · Envoyer · GH Actions</text>
+
+  <text x="197" y="474" fill="#0a1e2a" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">●</text>
+  <text x="213" y="474" fill="#22d3ee" font-size="13" font-weight="600"
+        font-family="'Segoe UI', system-ui, sans-serif">SARIF output</text>
+  <text x="295" y="474" fill="#374151" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">GitHub Code Scanning upload</text>
+
+  <text x="197" y="494" fill="#2a0a1e" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">●</text>
+  <text x="213" y="494" fill="#f472b6" font-size="13" font-weight="600"
+        font-family="'Segoe UI', system-ui, sans-serif">Baseline suppress</text>
+  <text x="323" y="494" fill="#374151" font-size="13"
+        font-family="'Segoe UI', system-ui, sans-serif">+ inline @ship-ignore</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- BOTTOM TECH STACK                             -->
+  <!-- ══════════════════════════════════════════════ -->
+  <line x1="196" y1="522" x2="760" y2="522" stroke="#1a2535" stroke-width="1"/>
+
+  <text x="197" y="544" fill="#1f2937" font-size="13.5"
+        font-family="'Segoe UI', system-ui, sans-serif">PHP 8.2+</text>
+  <circle cx="255" cy="538" r="2" fill="#1a2535"/>
+  <text x="264" y="544" fill="#1f2937" font-size="13.5"
+        font-family="'Segoe UI', system-ui, sans-serif">Laravel 11 · 12 · 13</text>
+  <circle cx="382" cy="538" r="2" fill="#1a2535"/>
+  <text x="391" y="544" fill="#1f2937" font-size="13.5"
+        font-family="'Segoe UI', system-ui, sans-serif">MIT License</text>
+  <circle cx="459" cy="538" r="2" fill="#1a2535"/>
+  <text x="468" y="544" fill="#1f2937" font-size="13.5"
+        font-family="'Segoe UI', system-ui, sans-serif">Zero Config</text>
+  <circle cx="543" cy="538" r="2" fill="#1a2535"/>
+  <text x="552" y="544" fill="#1f2937" font-size="13.5"
+        font-family="'Segoe UI', system-ui, sans-serif">7 Output Formats</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- VERTICAL DIVIDER                              -->
+  <!-- ══════════════════════════════════════════════ -->
+  <defs>
+    <linearGradient id="divLine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#22c55e" stop-opacity="0.3"/>
+      <stop offset="80%" stop-color="#3b82f6" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <line x1="790" y1="20" x2="790" y2="580" stroke="url(#divLine)" stroke-width="1"/>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- TERMINAL WINDOW                               -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- Terminal shadow -->
+  <rect x="812" y="36" width="370" height="542" rx="14" fill="#000000" opacity="0.4"/>
+  <!-- Terminal body -->
+  <rect x="808" y="28" width="370" height="544" rx="14" fill="url(#termBg)" stroke="#1e2d3f" stroke-width="1.5"/>
 
   <!-- Title bar -->
-  <rect x="945" y="55" width="240" height="36" rx="10" fill="#252d3d"/>
-  <rect x="945" y="71" width="240" height="20" fill="#252d3d"/>
+  <rect x="808" y="28" width="370" height="38" rx="14" fill="url(#termHeader)"/>
+  <rect x="808" y="52" width="370" height="14" fill="url(#termHeader)"/>
 
   <!-- Traffic lights -->
-  <circle cx="970" cy="73" r="5.5" fill="#ff5f57"/>
-  <circle cx="988" cy="73" r="5.5" fill="#febc2e"/>
-  <circle cx="1006" cy="73" r="5.5" fill="#28c840"/>
+  <circle cx="833" cy="47" r="5.5" fill="#ff5f57"/>
+  <circle cx="852" cy="47" r="5.5" fill="#febc2e"/>
+  <circle cx="871" cy="47" r="5.5" fill="#28c840"/>
 
-  <!-- Terminal label -->
-  <text x="1065" y="77" fill="#4b5563" font-size="11" text-anchor="middle"
-        font-family="'Courier New', Courier, monospace">ship:check</text>
+  <!-- Terminal title -->
+  <text x="993" y="52" fill="#3d5068" font-size="11" text-anchor="middle"
+        font-family="'Courier New', Courier, monospace">ship:check --target-env=production</text>
 
-  <!-- Terminal content -->
-  <text x="960" y="115" fill="#e2e8f0" font-size="10.5" font-weight="bold"
-        font-family="'Courier New', Courier, monospace">  ShipReady Report</text>
+  <!-- ── Terminal content ── -->
+  <text x="826" y="90" fill="#c9d1d9" font-size="11" font-weight="700"
+        font-family="'Courier New', Courier, monospace">  ShipReady Audit Report</text>
 
-  <!-- Score line -->
-  <text x="960" y="136" fill="#64748b" font-size="10"
+  <!-- Score bar -->
+  <text x="826" y="112" fill="#4a5568" font-size="10"
         font-family="'Courier New', Courier, monospace">  Score</text>
-  <text x="1003" y="136" fill="#ef4444" font-size="10"
+  <!-- filled portion (red = low score) -->
+  <text x="869" y="112" fill="#ef4444" font-size="10"
         font-family="'Courier New', Courier, monospace">████</text>
-  <text x="1028" y="136" fill="#1e293b" font-size="10"
-        font-family="'Courier New', Courier, monospace">████████████████</text>
-  <text x="1131" y="136" fill="#ef4444" font-size="10"
-        font-family="'Courier New', Courier, monospace">20/100</text>
+  <!-- empty portion -->
+  <text x="893" y="112" fill="#1a2535" font-size="10"
+        font-family="'Courier New', Courier, monospace">████████████████████████</text>
+  <text x="1100" y="112" fill="#ef4444" font-size="10"
+        font-family="'Courier New', Courier, monospace">18/100</text>
 
-  <!-- Blank line -->
-  <text x="960" y="158" fill="#64748b" font-size="10" font-weight="bold"
+  <!-- SECURITY section -->
+  <text x="826" y="134" fill="#94a3b8" font-size="10" font-weight="700"
         font-family="'Courier New', Courier, monospace">  SECURITY</text>
 
-  <text x="960" y="175" fill="#ef4444" font-size="9.5"
-        font-family="'Courier New', Courier, monospace">  &#x2716; CRITICAL</text>
-  <text x="960" y="188" fill="#94a3b8" font-size="9"
-        font-family="'Courier New', Courier, monospace">    [SEC001] APP_DEBUG on</text>
+  <text x="826" y="150" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ CRITICAL</text>
+  <text x="826" y="163" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [SEC001] APP_DEBUG enabled in prod</text>
 
-  <text x="960" y="203" fill="#ef4444" font-size="9.5"
-        font-family="'Courier New', Courier, monospace">  &#x2716; HIGH</text>
-  <text x="960" y="216" fill="#94a3b8" font-size="9"
-        font-family="'Courier New', Courier, monospace">    [SEC010] No throttle</text>
+  <text x="826" y="177" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ CRITICAL</text>
+  <text x="826" y="190" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [SEC019] Hardcoded Stripe secret</text>
 
-  <text x="960" y="232" fill="#fbbf24" font-size="9.5"
-        font-family="'Courier New', Courier, monospace">  &#x25B2; MEDIUM</text>
-  <text x="960" y="245" fill="#94a3b8" font-size="9"
-        font-family="'Courier New', Courier, monospace">    [SEC014] No CSP header</text>
+  <text x="826" y="204" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ HIGH</text>
+  <text x="826" y="217" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [SEC020] shell_exec() + user input</text>
 
-  <line x1="960" y1="256" x2="1170" y2="256" stroke="#1e293b" stroke-width="1"/>
+  <line x1="826" y1="228" x2="1162" y2="228" stroke="#0f1a28" stroke-width="1"/>
 
-  <text x="960" y="272" fill="#64748b" font-size="10" font-weight="bold"
-        font-family="'Courier New', Courier, monospace">  RELIABILITY</text>
+  <!-- OCTANE section -->
+  <text x="826" y="244" fill="#94a3b8" font-size="10" font-weight="700"
+        font-family="'Courier New', Courier, monospace">  OCTANE</text>
 
-  <text x="960" y="289" fill="#fbbf24" font-size="9.5"
-        font-family="'Courier New', Courier, monospace">  &#x25B2; MEDIUM</text>
-  <text x="960" y="302" fill="#94a3b8" font-size="9"
-        font-family="'Courier New', Courier, monospace">    [REL015] No monitoring</text>
+  <text x="826" y="260" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ CRITICAL</text>
+  <text x="826" y="273" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [OCT001] Singleton captures Request</text>
 
-  <text x="960" y="317" fill="#60a5fa" font-size="9.5"
-        font-family="'Courier New', Courier, monospace">  &#x25CF; LOW</text>
-  <text x="960" y="330" fill="#94a3b8" font-size="9"
-        font-family="'Courier New', Courier, monospace">    [REL017] No backups</text>
+  <text x="826" y="287" fill="#f97316" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ HIGH</text>
+  <text x="826" y="300" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [OCT002] Mutable static property</text>
 
-  <line x1="960" y1="343" x2="1170" y2="343" stroke="#1e293b" stroke-width="1"/>
+  <line x1="826" y1="311" x2="1162" y2="311" stroke="#0f1a28" stroke-width="1"/>
 
-  <!-- Summary -->
-  <text x="960" y="362" fill="#64748b" font-size="9.5"
-        font-family="'Courier New', Courier, monospace">  Found 24 issues:</text>
-  <text x="960" y="377" fill="#ef4444" font-size="9"
-        font-family="'Courier New', Courier, monospace">  2 critical  6 high</text>
-  <text x="960" y="392" fill="#fbbf24" font-size="9"
-        font-family="'Courier New', Courier, monospace">  12 medium  4 low</text>
-  <text x="960" y="410" fill="#334155" font-size="9"
-        font-family="'Courier New', Courier, monospace">  Done in 3.24s</text>
+  <!-- TENANCY section -->
+  <text x="826" y="327" fill="#94a3b8" font-size="10" font-weight="700"
+        font-family="'Courier New', Courier, monospace">  TENANCY</text>
 
+  <text x="826" y="343" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ CRITICAL</text>
+  <text x="826" y="356" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [TEN001] Model missing tenant scope</text>
+
+  <text x="826" y="370" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ CRITICAL</text>
+  <text x="826" y="383" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [TEN004] withoutGlobalScopes() bypass</text>
+
+  <line x1="826" y1="394" x2="1162" y2="394" stroke="#0f1a28" stroke-width="1"/>
+
+  <!-- PACKAGES section -->
+  <text x="826" y="410" fill="#94a3b8" font-size="10" font-weight="700"
+        font-family="'Courier New', Courier, monospace">  PACKAGES</text>
+
+  <text x="826" y="426" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ CRITICAL</text>
+  <text x="826" y="439" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [FIL001] No Filament panel auth</text>
+
+  <text x="826" y="453" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ CRITICAL</text>
+  <text x="826" y="466" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [PAY001] Webhook signature missing</text>
+
+  <line x1="826" y1="477" x2="1162" y2="477" stroke="#0f1a28" stroke-width="1"/>
+
+  <!-- INFRASTRUCTURE -->
+  <text x="826" y="493" fill="#94a3b8" font-size="10" font-weight="700"
+        font-family="'Courier New', Courier, monospace">  INFRASTRUCTURE</text>
+
+  <text x="826" y="509" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  ✖ CRITICAL</text>
+  <text x="826" y="522" fill="#6b7280" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [INF002] .env baked into Docker image</text>
+
+  <line x1="826" y1="533" x2="1162" y2="533" stroke="#0f1a28" stroke-width="1"/>
+
+  <!-- Summary line -->
+  <text x="826" y="549" fill="#4a5568" font-size="9"
+        font-family="'Courier New', Courier, monospace">  Found 47 issues:</text>
+  <text x="826" y="561" fill="#ef4444" font-size="9"
+        font-family="'Courier New', Courier, monospace">  6 critical  14 high  20 medium  7 low</text>
 </svg>

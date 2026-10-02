@@ -6,43 +6,52 @@
 
 <p align="center">
   <a href="https://github.com/nivoin/ship-ready/actions/workflows/tests.yml"><img src="https://github.com/nivoin/ship-ready/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
-  <a href="https://packagist.org/packages/nivoin/ship-ready"><img src="https://img.shields.io/packagist/v/nivoin/ship-ready.svg" alt="Latest Version"></a>
-  <a href="https://www.php.net"><img src="https://img.shields.io/badge/PHP-8.2%2B-blue" alt="PHP"></a>
-  <a href="https://laravel.com"><img src="https://img.shields.io/badge/Laravel-11%20%7C%2012%20%7C%2013-red" alt="Laravel"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
+  <a href="https://packagist.org/packages/nivoin/ship-ready"><img src="https://img.shields.io/packagist/v/nivoin/ship-ready.svg?label=version&color=22c55e" alt="Latest Version"></a>
+  <a href="https://www.php.net"><img src="https://img.shields.io/badge/PHP-8.2%2B-3b82f6" alt="PHP"></a>
+  <a href="https://laravel.com"><img src="https://img.shields.io/badge/Laravel-11%20%7C%2012%20%7C%2013-ef4444" alt="Laravel"></a>
+  <a href="https://packagist.org/packages/nivoin/ship-ready"><img src="https://img.shields.io/packagist/dt/nivoin/ship-ready.svg?color=6366f1" alt="Downloads"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-22c55e" alt="License"></a>
 </p>
 
-**Static security, performance, and production-readiness auditor for Laravel 11, 12, and 13.**
+**The most comprehensive static security, performance, and production-readiness auditor for Laravel 11, 12, and 13.**
 
-ShipReady is a Laravel security scanner and static analysis tool that runs **111 checks** across 9 categories — security vulnerabilities, performance bottlenecks, reliability issues, version-specific migration problems, Octane memory leaks, queue configuration, multi-tenancy isolation, package-specific issues (Livewire, Filament, payments), and infrastructure (Docker, PHP). It works without touching your database: it reads your routes, config files, PHP source, Blade views, and migrations, then tells you exactly what to fix before you deploy.
+ShipReady runs **111 checks** across **9 categories** and catches what others miss: Octane memory leaks, multi-tenant data isolation failures, Livewire/Filament authorization gaps, Docker secrets baked into images, live CVEs from `composer audit`, and more — all without touching your database or making HTTP requests.
 
-Use it as a **Laravel production checklist**, a **pre-deploy audit tool**, a **PHP security checker**, or a **CI quality gate**. Integrates with AI agents via MCP (Claude Code, Cursor, Copilot) for automatic fix suggestions. Outputs results as console text, JSON, SARIF (GitHub Code Scanning), JUnit, Markdown, or HTML.
+Use it as a **Laravel production checklist**, a **CI quality gate**, or an **AI-powered fix engine** via the built-in MCP server that lets Claude Code, Cursor, and GitHub Copilot audit and fix your app automatically.
 
 ```
-  ShipReady Audit Report
+  ShipReady Audit Report                                    v1.1.0
 
-  Score  ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 20/100
+  Score  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 18/100
 
   SECURITY
-
-  ✖ CRITICAL [SEC001] APP_DEBUG is enabled in production. Stack traces and env vars are exposed to users.
+  ✖ CRITICAL [SEC001] APP_DEBUG is enabled in production. Stack traces exposed.
     Fix: Set APP_DEBUG=false in your production .env file.
+  ✖ CRITICAL [SEC019] Hardcoded Stripe secret key found in AdminController.php
+    Fix: Move secrets to .env and access via config().
+  ✖ HIGH     [SEC020] shell_exec() with user-controlled input — RCE possible
+    Fix: Never pass unsanitised user input to shell functions.
 
-  ✖ HIGH     [SEC010] Auth route [/login] (POST) has no throttle middleware. Brute-force attacks are possible.
-    Fix: Add ->middleware('throttle:5,1') to your login route.
+  OCTANE
+  ✖ CRITICAL [OCT001] Singleton captures Request — memory leaks between requests
+    Fix: Inject Request inside methods, never in singleton closures.
 
-  PERFORMANCE
+  TENANCY
+  ✖ CRITICAL [TEN001] Post model has no tenant scope — cross-tenant data leak
+    Fix: Add BelongsToTenant trait or a global scope filtering by tenant ID.
+  ✖ CRITICAL [TEN004] withoutGlobalScopes() removes tenant isolation
+    Fix: Explicitly filter by tenant_id instead of removing all scopes.
 
-  ▲ MEDIUM   [PERF001] Configuration files are not cached.
-    Fix: Run `php artisan config:cache` as part of your deployment process.
+  INFRASTRUCTURE
+  ✖ CRITICAL [INF002] .env file is COPY'd into Docker image — secrets exposed
+    Fix: Remove COPY .env. Pass secrets at runtime via env vars or secrets manager.
 
-  RELIABILITY
-
-  ▲ MEDIUM   [REL015] No error monitoring service is installed. Exceptions are silently swallowed.
-    Fix: Install sentry/sentry-laravel or spatie/laravel-flare.
-
-  Found 24 issue(s): 2 critical, 6 high, 12 medium, 4 low in 3.2s
+  Found 47 issue(s): 6 critical, 14 high, 20 medium, 7 low in 3.2s
 ```
+
+<p align="center">
+  <img src="art/features.svg" alt="ShipReady Features" width="100%">
+</p>
 
 ## Requirements
 
@@ -57,17 +66,20 @@ composer require nivoin/ship-ready --dev
 
 Laravel auto-discovers the service provider. No configuration publishing required.
 
-## Usage
+## Quick Start
 
 ```bash
-# Run all checks (targets production by default)
+# Full audit (production mode)
 php artisan ship:check --target-env=production
 
 # Security checks only
 php artisan ship:check --category=security
 
-# Fail CI on critical issues only
-php artisan ship:check --fail-on=critical
+# Fail CI on high+ severity only
+php artisan ship:check --fail-on=high --ci
+
+# Only check files changed since last commit
+php artisan ship:check --changed=origin/main
 
 # JSON output for tooling
 php artisan ship:check --format=json --output=report.json
@@ -75,8 +87,23 @@ php artisan ship:check --format=json --output=report.json
 # SARIF for GitHub Code Scanning
 php artisan ship:check --format=sarif --output=results.sarif
 
-# Explain a specific check
+# Explain a specific check in detail
 php artisan ship:explain SEC001
+
+# Live HTTP security probe
+php artisan ship:probe --url=https://your-app.com
+
+# Check for env variable drift
+php artisan ship:drift
+
+# Route attack surface map
+php artisan ship:routes
+
+# Laravel 14 upgrade readiness
+php artisan ship:next --target=14
+
+# Generate CI/deploy gate
+php artisan ship:install --workflow
 ```
 
 ## Exit Codes
@@ -87,6 +114,15 @@ php artisan ship:explain SEC001
 | `1`  | One or more findings meet or exceed the threshold |
 
 Default `--fail-on` is `high`. Override in `config/ship-ready.php` or via `SHIP_READY_FAIL_ON=critical`.
+
+## Versioning
+
+ShipReady follows [Semantic Versioning](https://semver.org/).
+
+| Version | Highlights |
+|---------|-----------|
+| **v1.1.0** | MCP server, Octane/Queue/Tenancy/Packages/Infrastructure checks, 6 new commands, Laravel 11 support, `--ci` and `--changed` flags |
+| **v1.0.0** | 86 checks: Security, Performance, Reliability, Version-Specific; 7 output formats; baseline suppression |
 
 ## Commands
 

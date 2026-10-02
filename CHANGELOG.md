@@ -6,6 +6,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.1.0] — 2026-10-02
+
 ### Added
 - **MCP server** (`ship:mcp`) — JSON-RPC 2.0 stdio server for AI agent integration (Claude Code, Cursor, GitHub Copilot). Exposes `ship_check`, `ship_explain`, `ship_fix_preview`, and `ship_verify` tools.
 - **`ship:probe`** — Live HTTP probe: checks HSTS, CSP, X-Frame-Options, cookie flags, and 7 sensitive path exposures (/.env, /.git, /telescope, etc.).
@@ -29,7 +31,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `ConsoleReporter::detectCategory()` now maps OCT, QUE, TEN, LW/FIL/PAY, INF prefixes to their categories.
 - `Filter` now accepts `ciMode` parameter.
 
-## [1.0.0] — Initial Release
+## [1.0.0] — 2026-09-01
 
 ### Added
 - 86 checks across Security (32), Performance (18), Reliability (19), and Version-Specific (16) categories.
