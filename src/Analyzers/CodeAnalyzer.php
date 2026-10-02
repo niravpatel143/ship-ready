@@ -20,10 +20,22 @@ final class CodeAnalyzer
     private ?\PhpParser\Parser $parser = null;
     private ?NodeFinder $nodeFinder    = null;
 
+    /** When set, only these absolute paths are returned by phpFiles() */
+    private ?array $changedFiles = null;
+
     public function __construct(array $paths, array $exclude = [])
     {
         $this->paths   = $paths;
         $this->exclude = $exclude;
+    }
+
+    /**
+     * Restrict phpFiles() to the given list of absolute paths (for --changed mode).
+     */
+    public function setChangedFiles(?array $files): void
+    {
+        $this->changedFiles = $files;
+        $this->astCache     = [];
     }
 
     /**
@@ -220,11 +232,19 @@ final class CodeAnalyzer
 
     /**
      * Get all PHP files from the configured paths.
+     * When changedFiles is set (--changed mode) only those files are returned.
      *
      * @return string[]
      */
     public function phpFiles(): array
     {
+        if ($this->changedFiles !== null) {
+            return array_values(array_filter(
+                $this->changedFiles,
+                fn(string $f) => is_file($f) && pathinfo($f, PATHINFO_EXTENSION) === 'php'
+            ));
+        }
+
         $files = [];
 
         foreach ($this->paths as $path) {

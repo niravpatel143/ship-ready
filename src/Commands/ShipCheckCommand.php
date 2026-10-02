@@ -81,7 +81,7 @@ class ShipCheckCommand extends Command
         }
 
         // Build analyzers
-        $analyzers = $this->buildAnalyzers($env);
+        $analyzers = $this->buildAnalyzers($env, $changedFiles);
 
         // Build context
         $context = new Context(
@@ -182,16 +182,22 @@ class ShipCheckCommand extends Command
         return array_values(array_map(fn($f) => base_path($f), $files));
     }
 
-    private function buildAnalyzers(string $env): array
+    private function buildAnalyzers(string $env, ?array $changedFiles = null): array
     {
         $paths     = config('ship-ready.paths', [app_path()]);
         $exclude   = config('ship-ready.exclude', []);
         $viewPaths = config('ship-ready.view_paths', [resource_path('views')]);
 
+        $codeAnalyzer = new CodeAnalyzer($paths, $exclude);
+
+        if ($changedFiles !== null) {
+            $codeAnalyzer->setChangedFiles($changedFiles);
+        }
+
         return [
             new ConfigAnalyzer(app('config'), $env),
             new RouteAnalyzer(app('router')),
-            new CodeAnalyzer($paths, $exclude),
+            $codeAnalyzer,
             new BladeAnalyzer($viewPaths),
             new EnvironmentAnalyzer(),
             new DependencyAnalyzer(),

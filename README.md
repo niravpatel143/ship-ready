@@ -160,7 +160,7 @@ ShipReady follows [Semantic Versioning](https://semver.org/).
 | `--ignore-baseline` | false | Run all checks, ignoring saved baseline |
 | `--experimental` | false | Include experimental checks |
 
-## Checks (117 total)
+## Checks (111 total)
 
 ### Security (32)
 
