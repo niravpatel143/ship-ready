@@ -20,33 +20,37 @@ ShipReady runs **111 checks** across **9 categories** and catches what others mi
 Use it as a **Laravel production checklist**, a **CI quality gate**, or an **AI-powered fix engine** via the built-in MCP server that lets Claude Code, Cursor, and GitHub Copilot audit and fix your app automatically.
 
 ```
-  ShipReady Audit Report                                    v1.1.0
+  ShipReady Audit Report  v1.1.0
 
-  Score  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 18/100
-
-  SECURITY
-  ✖ CRITICAL [SEC001] APP_DEBUG is enabled in production. Stack traces exposed.
-    Fix: Set APP_DEBUG=false in your production .env file.
-  ✖ CRITICAL [SEC019] Hardcoded Stripe secret key found in AdminController.php
-    Fix: Move secrets to .env and access via config().
-  ✖ HIGH     [SEC020] shell_exec() with user-controlled input — RCE possible
-    Fix: Never pass unsanitised user input to shell functions.
-
-  OCTANE
-  ✖ CRITICAL [OCT001] Singleton captures Request — memory leaks between requests
-    Fix: Inject Request inside methods, never in singleton closures.
-
-  TENANCY
-  ✖ CRITICAL [TEN001] Post model has no tenant scope — cross-tenant data leak
-    Fix: Add BelongsToTenant trait or a global scope filtering by tenant ID.
-  ✖ CRITICAL [TEN004] withoutGlobalScopes() removes tenant isolation
-    Fix: Explicitly filter by tenant_id instead of removing all scopes.
+  Score  ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 18/100
 
   INFRASTRUCTURE
   ✖ CRITICAL [INF002] .env file is COPY'd into Docker image — secrets exposed
     Fix: Remove COPY .env. Pass secrets at runtime via env vars or secrets manager.
+    Dockerfile
 
-  Found 47 issue(s): 6 critical, 14 high, 20 medium, 7 low in 3.2s
+  OCTANE
+  ✖ CRITICAL [OCT001] Singleton captures Request — Octane memory leak between requests
+    Fix: Inject Request inside methods, never in singleton closures.
+    app/Providers/AppServiceProvider.php
+
+  SECURITY
+  ✖ HIGH     [SEC001] APP_DEBUG is enabled in production. Stack traces exposed.
+    Fix: Set APP_DEBUG=false in your production .env file.
+  ✖ HIGH     [SEC019] Hardcoded Stripe secret key found in AdminController.php
+    Fix: Move secrets to .env and access via config().
+  ✖ HIGH     [SEC020] shell_exec() with user-controlled input — OS command injection
+    Fix: Never pass unsanitised user input to shell functions.
+    app/Http/Controllers/PostController.php:19
+  ▲ MEDIUM   [SEC014] Missing security header: Strict-Transport-Security
+    Fix: Add HSTS middleware or use spatie/laravel-csp.
+
+  VERSION SPECIFIC
+  ▲ MEDIUM   [VER001] CSRF exclusions in VerifyCsrfToken.php are ignored in Laravel 11+
+    Fix: Move CSRF exclusions to bootstrap/app.php withMiddleware().
+    app/Http/Middleware/VerifyCsrfToken.php
+
+  Found 25 issue(s): 2 critical, 4 high, 5 medium, 14 low in 3.2s
 ```
 
 <p align="center">

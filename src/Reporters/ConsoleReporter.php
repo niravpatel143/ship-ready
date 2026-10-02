@@ -27,7 +27,7 @@ final class ConsoleReporter implements Reporter
         $lines = [];
 
         $lines[] = '';
-        $lines[] = $this->bold('  ShipReady Audit Report');
+        $lines[] = $this->bold('  ShipReady Audit Report') . $this->dim('  v1.1.0');
         $lines[] = '';
 
         // Score bar
@@ -45,7 +45,7 @@ final class ConsoleReporter implements Reporter
             $grouped = $this->groupByCategory($findings);
 
             foreach ($grouped as $category => $catFindings) {
-                $lines[] = $this->bold('  ' . strtoupper($category));
+                $lines[] = $this->bold('  ' . strtoupper(str_replace('_', ' ', $category)));
                 $lines[] = '';
 
                 foreach ($catFindings as $finding) {

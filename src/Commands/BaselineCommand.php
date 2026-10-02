@@ -20,13 +20,13 @@ class BaselineCommand extends Command
 {
     protected $signature = 'ship:baseline
                             {--prune : Remove findings from baseline that no longer exist}
-                            {--env=production : Target environment}';
+                            {--target-env=production : Target environment}';
 
     protected $description = 'Record current findings as baseline (suppress in future runs)';
 
     public function handle(): int
     {
-        $env          = $this->option('env') ?? 'production';
+        $env          = $this->option('target-env') ?? 'production';
         $prune        = (bool)$this->option('prune');
         $baselinePath = config('ship-ready.baseline', base_path('.ship-ready-baseline.json'));
 
