@@ -1,19 +1,26 @@
 {
   "name": "nivoin/ship-ready",
-  "description": "Static security, performance, and production-readiness auditor for Laravel 12 and 13",
-  "keywords": ["laravel", "security", "audit", "static-analysis", "sarif", "production", "production-readiness", "security-scanner", "vulnerability-scanner", "performance", "reliability", "code-quality", "pre-deploy", "checklist", "php"],
+  "description": "Static security, performance, and production-readiness auditor for Laravel 11, 12, and 13 — 111 checks, MCP server, Octane, Queue, Tenancy, Livewire, Filament, Infrastructure",
+  "keywords": ["laravel", "security", "audit", "static-analysis", "sarif", "production", "production-readiness", "security-scanner", "vulnerability-scanner", "performance", "reliability", "code-quality", "pre-deploy", "checklist", "php", "octane", "tenancy", "queue", "filament", "livewire", "mcp"],
+  "homepage": "https://github.com/nivoin/ship-ready",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "nivoin",
+      "role": "Developer"
+    }
+  ],
   "require": {
-    "php": "^8.3",
-    "illuminate/contracts": "^12.0|^13.0",
-    "illuminate/support": "^12.0|^13.0",
-    "illuminate/console": "^12.0|^13.0",
+    "php": "^8.2",
+    "illuminate/contracts": "^11.0|^12.0|^13.0",
+    "illuminate/support": "^11.0|^12.0|^13.0",
+    "illuminate/console": "^11.0|^12.0|^13.0",
     "nikic/php-parser": "^5.0",
     "spatie/laravel-package-tools": "^1.16",
-    "symfony/finder": "^7.0"
+    "symfony/finder": "^6.0|^7.0"
   },
   "require-dev": {
-    "orchestra/testbench": "^10.0|^11.0",
+    "orchestra/testbench": "^9.0|^10.0|^11.0",
     "pestphp/pest": "^3.0",
     "pestphp/pest-plugin-laravel": "^3.0"
   },

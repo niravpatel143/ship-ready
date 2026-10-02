@@ -55,7 +55,7 @@
   <!-- Tagline -->
   <text x="333" y="258" fill="#94a3b8" font-size="20"
         font-family="'Segoe UI', Arial, sans-serif" letter-spacing="0.3">
-    Static security &amp; production-readiness auditor for Laravel
+    Static security &amp; production-readiness auditor for Laravel · MCP-ready
   </text>
 
   <!-- Category pills -->
@@ -82,17 +82,17 @@
   <!-- Stats row -->
   <text x="335" y="350" fill="#475569" font-size="15"
         font-family="'Segoe UI', Arial, sans-serif">
-    86 checks
+    111 checks
   </text>
-  <circle cx="410" cy="344" r="2" fill="#334155"/>
-  <text x="420" y="350" fill="#475569" font-size="15"
+  <circle cx="415" cy="344" r="2" fill="#334155"/>
+  <text x="425" y="350" fill="#475569" font-size="15"
         font-family="'Segoe UI', Arial, sans-serif">
-    PHP 8.3+
+    PHP 8.2+
   </text>
-  <circle cx="488" cy="344" r="2" fill="#334155"/>
-  <text x="498" y="350" fill="#475569" font-size="15"
+  <circle cx="493" cy="344" r="2" fill="#334155"/>
+  <text x="503" y="350" fill="#475569" font-size="15"
         font-family="'Segoe UI', Arial, sans-serif">
-    Laravel 12 &amp; 13
+    Laravel 11, 12 &amp; 13
   </text>
   <circle cx="602" cy="344" r="2" fill="#334155"/>
   <text x="612" y="350" fill="#475569" font-size="15"

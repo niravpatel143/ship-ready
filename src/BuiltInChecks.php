@@ -82,6 +82,42 @@ final class BuiltInChecks
             \ShipReady\Checks\Reliability\TrustProxiesCheck::class,
             \ShipReady\Checks\Reliability\ForeignKeyConstraintCheck::class,
 
+            // Octane Checks
+            \ShipReady\Checks\Octane\SingletonRequestCaptureCheck::class,
+            \ShipReady\Checks\Octane\MutableStaticPropertyCheck::class,
+            \ShipReady\Checks\Octane\OctaneMaxRequestsCheck::class,
+            \ShipReady\Checks\Octane\IncompatibleOctanePackagesCheck::class,
+            \ShipReady\Checks\Octane\ContainerStateLeakCheck::class,
+            \ShipReady\Checks\Octane\OctaneWorkerResetCheck::class,
+
+            // Queue Checks
+            \ShipReady\Checks\Queue\RetryAfterTimeoutMismatchCheck::class,
+            \ShipReady\Checks\Queue\JobHttpWithoutRetryCheck::class,
+            \ShipReady\Checks\Queue\ShouldBeUniqueCacheCheck::class,
+            \ShipReady\Checks\Queue\SchedulerOverlappingCheck::class,
+            \ShipReady\Checks\Queue\HorizonConfigCheck::class,
+
+            // Tenancy Checks
+            \ShipReady\Checks\Tenancy\ModelTenantScopeCheck::class,
+            \ShipReady\Checks\Tenancy\TenantAwareJobCheck::class,
+            \ShipReady\Checks\Tenancy\TenantCachePrefixCheck::class,
+            \ShipReady\Checks\Tenancy\GlobalScopeBypassCheck::class,
+            \ShipReady\Checks\Tenancy\CentralRouteExposureCheck::class,
+            \ShipReady\Checks\Tenancy\TenancyOctaneFlushCheck::class,
+
+            // Package-Conditional Checks
+            \ShipReady\Checks\Packages\LivewireLockedPropertyCheck::class,
+            \ShipReady\Checks\Packages\LivewireUploadValidationCheck::class,
+            \ShipReady\Checks\Packages\FilamentPanelAccessCheck::class,
+            \ShipReady\Checks\Packages\FilamentResourcePolicyCheck::class,
+            \ShipReady\Checks\Packages\WebhookSignatureVerificationCheck::class,
+
+            // Infrastructure Checks
+            \ShipReady\Checks\Infrastructure\DockerRootUserCheck::class,
+            \ShipReady\Checks\Infrastructure\DockerEnvFileCheck::class,
+            \ShipReady\Checks\Infrastructure\ComposerNoDevCheck::class,
+            \ShipReady\Checks\Infrastructure\PhpIniExposureCheck::class,
+
             // Version-Specific Checks
             \ShipReady\Checks\VersionSpecific\OldCsrfMiddlewareCheck::class,
             \ShipReady\Checks\VersionSpecific\DeprecatedMiddlewareLocationCheck::class,

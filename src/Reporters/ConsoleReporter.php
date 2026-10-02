@@ -207,6 +207,26 @@ final class ConsoleReporter implements Reporter
             return 'version_specific';
         }
 
+        if (strncmp($checkId, 'OCT', 3) === 0) {
+            return 'octane';
+        }
+
+        if (strncmp($checkId, 'QUE', 3) === 0) {
+            return 'queue';
+        }
+
+        if (strncmp($checkId, 'TEN', 3) === 0) {
+            return 'tenancy';
+        }
+
+        if (strncmp($checkId, 'LW', 2) === 0 || strncmp($checkId, 'FIL', 3) === 0 || strncmp($checkId, 'PAY', 3) === 0) {
+            return 'packages';
+        }
+
+        if (strncmp($checkId, 'INF', 3) === 0) {
+            return 'infrastructure';
+        }
+
         return 'other';
     }
 

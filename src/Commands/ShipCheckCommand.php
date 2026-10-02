@@ -37,7 +37,9 @@ class ShipCheckCommand extends Command
                             {--compact : Compact output, no fix hints}
                             {--ignore-baseline : Ignore the baseline file}
                             {--editor= : Editor for file links (phpstorm|vscode|sublime)}
-                            {--experimental : Include experimental checks}';
+                            {--experimental : Include experimental checks}
+                            {--ci : CI mode — only run deterministic checks (skip filesystem/live probes)}
+                            {--changed= : Only check files changed since this git ref (e.g. origin/main)}';
 
     protected $description = 'Run all security and production-readiness checks on your Laravel app';
 
@@ -50,7 +52,9 @@ class ShipCheckCommand extends Command
         $noAnsi        = (bool)$this->option('no-ansi');
         $editor        = $this->option('editor') ?? config('ship-ready.editor');
         $ignoreBaseline = (bool)$this->option('ignore-baseline');
-        $experimental  = (bool)$this->option('experimental');
+        $experimental   = (bool)$this->option('experimental');
+        $ciMode         = (bool)$this->option('ci');
+        $changedRef     = $this->option('changed');
         $categoryFilter = $this->option('category');
         $checkFilter    = $this->option('check');
 
@@ -63,6 +67,17 @@ class ShipCheckCommand extends Command
             $this->error("Invalid --fail-on value: {$failOnStr}");
 
             return self::FAILURE;
+        }
+
+        // Resolve changed files for --changed flag
+        $changedFiles = null;
+
+        if ($changedRef) {
+            $changedFiles = $this->resolveChangedFiles($changedRef);
+
+            if ($changedFiles !== null) {
+                $this->line("<fg=gray>  Running on " . count($changedFiles) . " changed file(s) since {$changedRef}.</>");
+            }
         }
 
         // Build analyzers
@@ -88,7 +103,8 @@ class ShipCheckCommand extends Command
             category:           $categoryFilter,
             checkId:            $checkFilter,
             productionOnly:     false,
-            includeExperimental: $experimental
+            includeExperimental: $experimental,
+            ciMode:             $ciMode
         );
 
         // Run checks
@@ -130,6 +146,40 @@ class ShipCheckCommand extends Command
         }
 
         return self::SUCCESS;
+    }
+
+    private function resolveChangedFiles(string $ref): ?array
+    {
+        $descriptors = [
+            0 => ['pipe', 'r'],
+            1 => ['pipe', 'w'],
+            2 => ['pipe', 'w'],
+        ];
+
+        $proc = proc_open(
+            ['git', 'diff', '--name-only', $ref, '--', '*.php'],
+            $descriptors,
+            $pipes,
+            base_path()
+        );
+
+        if (!is_resource($proc)) {
+            return null;
+        }
+
+        fclose($pipes[0]);
+        $output = stream_get_contents($pipes[1]);
+        fclose($pipes[1]);
+        fclose($pipes[2]);
+        proc_close($proc);
+
+        if (!$output) {
+            return [];
+        }
+
+        $files = array_filter(array_map('trim', explode("\n", $output)));
+
+        return array_values(array_map(fn($f) => base_path($f), $files));
     }
 
     private function buildAnalyzers(string $env): array

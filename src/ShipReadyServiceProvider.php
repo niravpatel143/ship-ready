@@ -5,9 +5,15 @@ namespace ShipReady;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use ShipReady\Commands\BaselineCommand;
+use ShipReady\Commands\DriftCommand;
 use ShipReady\Commands\ExplainCommand;
+use ShipReady\Commands\InstallCommand;
 use ShipReady\Commands\ListChecksCommand;
 use ShipReady\Commands\MakeCheckCommand;
+use ShipReady\Commands\McpCommand;
+use ShipReady\Commands\NextCommand;
+use ShipReady\Commands\ProbeCommand;
+use ShipReady\Commands\RoutesCommand;
 use ShipReady\Commands\ShipCheckCommand;
 
 class ShipReadyServiceProvider extends PackageServiceProvider
@@ -23,6 +29,12 @@ class ShipReadyServiceProvider extends PackageServiceProvider
                 ExplainCommand::class,
                 ListChecksCommand::class,
                 MakeCheckCommand::class,
+                ProbeCommand::class,
+                RoutesCommand::class,
+                DriftCommand::class,
+                InstallCommand::class,
+                McpCommand::class,
+                NextCommand::class,
             ]);
     }
 
