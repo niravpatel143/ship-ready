@@ -14,7 +14,9 @@
 
 **Static security, performance, and production-readiness auditor for Laravel 12 and 13.**
 
-ShipReady runs 86 checks against your codebase without touching your database or making HTTP requests. It reads your routes, config, source files, migrations, and Blade views — then tells you exactly what to fix before you deploy.
+ShipReady is a Laravel security scanner and static analysis tool that runs **86 checks** against your codebase — covering security vulnerabilities, performance bottlenecks, reliability issues, and version-specific migration problems. It works without touching your database or making HTTP requests: it reads your routes, config files, PHP source, Blade views, and database migrations, then tells you exactly what to fix before you deploy.
+
+Use it as a **Laravel production checklist**, a **pre-deploy audit tool**, a **PHP security checker**, or a **CI quality gate**. It outputs results as console text, JSON, SARIF (GitHub Code Scanning), JUnit, Markdown, or HTML.
 
 ```
   ShipReady Audit Report
@@ -296,6 +298,18 @@ Upload SARIF to GitHub Code Scanning:
 | Zero config | Works out of the box — no publishing required |
 | Laravel 12 &amp; 13 | Full version-specific checks for modern app structures |
 
+## Contributing
+
+Bug reports and pull requests are welcome on [GitHub](https://github.com/nivoin/ship-ready).
+
 ## License
 
 MIT — see [LICENSE](LICENSE)
+
+---
+
+<p align="center">
+  <sub>
+    Keywords: laravel security audit · laravel production checklist · laravel static analysis · php security scanner · laravel vulnerability scanner · laravel code audit · laravel deployment checklist · laravel performance audit · laravel best practices · composer audit · laravel security headers · artisan security check · laravel health check · laravel pre-deploy · sarif github scanning · laravel 12 security · laravel 13 security · php static analysis tool · laravel code quality · production readiness checker
+  </sub>
+</p>

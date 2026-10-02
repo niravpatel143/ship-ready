@@ -1,7 +1,7 @@
 {
   "name": "nivoin/ship-ready",
   "description": "Static security, performance, and production-readiness auditor for Laravel 12 and 13",
-  "keywords": ["laravel", "security", "audit", "static-analysis", "sarif", "production", "production-readiness"],
+  "keywords": ["laravel", "security", "audit", "static-analysis", "sarif", "production", "production-readiness", "security-scanner", "vulnerability-scanner", "performance", "reliability", "code-quality", "pre-deploy", "checklist", "php"],
   "license": "MIT",
   "require": {
     "php": "^8.3",
