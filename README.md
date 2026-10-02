@@ -1,10 +1,16 @@
 # ShipReady
 
-[![Tests](https://github.com/nivoin/ship-ready/actions/workflows/tests.yml/badge.svg)](https://github.com/nivoin/ship-ready/actions/workflows/tests.yml)
-[![Latest Version](https://img.shields.io/packagist/v/nivoin/ship-ready.svg)](https://packagist.org/packages/nivoin/ship-ready)
-[![PHP](https://img.shields.io/badge/PHP-8.3%2B-blue)](https://www.php.net)
-[![Laravel](https://img.shields.io/badge/Laravel-12%20%7C%2013-red)](https://laravel.com)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+<p align="center">
+  <img src="art/banner.svg" alt="ShipReady — Laravel Security & Production-Readiness Auditor" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://github.com/nivoin/ship-ready/actions/workflows/tests.yml"><img src="https://github.com/nivoin/ship-ready/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+  <a href="https://packagist.org/packages/nivoin/ship-ready"><img src="https://img.shields.io/packagist/v/nivoin/ship-ready.svg" alt="Latest Version"></a>
+  <a href="https://www.php.net"><img src="https://img.shields.io/badge/PHP-8.3%2B-blue" alt="PHP"></a>
+  <a href="https://laravel.com"><img src="https://img.shields.io/badge/Laravel-12%20%7C%2013-red" alt="Laravel"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
+</p>
 
 **Static security, performance, and production-readiness auditor for Laravel 12 and 13.**
 
@@ -275,21 +281,20 @@ Upload SARIF to GitHub Code Scanning:
     sarif_file: results.sarif
 ```
 
-## ShipReady vs LaraScan
+## What ShipReady gives you
 
-| Feature | ShipReady | LaraScan |
-|---------|-----------|----------|
-| Total checks | 86 | ~20 |
-| Performance checks | 18 | — |
-| Reliability checks | 19 | — |
-| Version-specific checks | 16 | — |
-| SARIF / GitHub Code Scanning | Yes | No |
-| JUnit / HTML / Markdown output | Yes | No |
-| Baseline suppression | Yes | No |
-| Inline `@ship-ignore` | Yes | No |
-| Custom check scaffolding | Yes | No |
-| composer audit integration | Yes | No |
-| Exit code control (`--fail-on`) | Yes | No |
+| Feature | |
+|---------|---|
+| 86 checks across 4 categories | Security, Performance, Reliability, Version-Specific |
+| 7 output formats | Console, JSON, SARIF, JUnit, Markdown, HTML, GitHub Annotations |
+| GitHub Code Scanning | Upload SARIF results directly to the Security tab |
+| Baseline suppression | Record known findings and only surface new ones |
+| Inline `@ship-ignore` | Suppress individual findings with a comment |
+| Custom check scaffolding | `make:ship-check` generates a ready-to-use check class |
+| `composer audit` integration | Live CVE data from the Packagist security advisory database |
+| Exit code control | `--fail-on=critical\|high\|medium\|low` for precise CI gates |
+| Zero config | Works out of the box — no publishing required |
+| Laravel 12 &amp; 13 | Full version-specific checks for modern app structures |
 
 ## License
 

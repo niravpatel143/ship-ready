@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="60%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="shieldGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="termBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e2535"/>
+      <stop offset="100%" stop-color="#141824"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1" fill="#ffffff" opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="500" fill="url(#bg)"/>
+  <rect width="1200" height="500" fill="url(#dots)"/>
+
+  <!-- Glow orb behind shield -->
+  <ellipse cx="210" cy="240" rx="140" ry="140" fill="#22c55e" opacity="0.06"/>
+
+  <!-- Shield shape -->
+  <g transform="translate(130, 140)" filter="url(#softglow)">
+    <path d="M80 0 L160 28 L160 88 Q160 148 80 175 Q0 148 0 88 L0 28 Z" fill="#22c55e" opacity="0.12"/>
+    <path d="M80 8 L152 33 L152 88 Q152 142 80 166 Q8 142 8 88 L8 33 Z" fill="none" stroke="#22c55e" stroke-width="2.5" opacity="0.8"/>
+    <!-- Lock body -->
+    <rect x="52" y="90" width="56" height="44" rx="6" fill="#22c55e" opacity="0.9"/>
+    <!-- Lock shackle -->
+    <path d="M62 90 L62 72 Q62 52 80 52 Q98 52 98 72 L98 90" fill="none" stroke="#22c55e" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+    <!-- Lock keyhole -->
+    <circle cx="80" cy="108" r="7" fill="#0f172a"/>
+    <rect x="77" y="108" width="6" height="12" rx="2" fill="#0f172a"/>
+  </g>
+
+  <!-- ShipReady wordmark -->
+  <text x="330" y="215" fill="#f8fafc" font-size="72" font-weight="700"
+        font-family="'Segoe UI', Arial, sans-serif" letter-spacing="-3">
+    Ship<tspan fill="#22c55e">Ready</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="333" y="258" fill="#94a3b8" font-size="20"
+        font-family="'Segoe UI', Arial, sans-serif" letter-spacing="0.3">
+    Static security &amp; production-readiness auditor for Laravel
+  </text>
+
+  <!-- Category pills -->
+  <!-- Security -->
+  <rect x="333" y="285" width="118" height="30" rx="15" fill="#ef444422" stroke="#ef444440" stroke-width="1"/>
+  <text x="392" y="305" fill="#f87171" font-size="12" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-weight="600">SECURITY</text>
+
+  <!-- Performance -->
+  <rect x="461" y="285" width="138" height="30" rx="15" fill="#f59e0b22" stroke="#f59e0b40" stroke-width="1"/>
+  <text x="530" y="305" fill="#fbbf24" font-size="12" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-weight="600">PERFORMANCE</text>
+
+  <!-- Reliability -->
+  <rect x="609" y="285" width="128" height="30" rx="15" fill="#3b82f622" stroke="#3b82f640" stroke-width="1"/>
+  <text x="673" y="305" fill="#60a5fa" font-size="12" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-weight="600">RELIABILITY</text>
+
+  <!-- Version -->
+  <rect x="747" y="285" width="138" height="30" rx="15" fill="#a855f722" stroke="#a855f740" stroke-width="1"/>
+  <text x="816" y="305" fill="#c084fc" font-size="12" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-weight="600">VERSION-SPECIFIC</text>
+
+  <!-- Stats row -->
+  <text x="335" y="350" fill="#475569" font-size="15"
+        font-family="'Segoe UI', Arial, sans-serif">
+    86 checks
+  </text>
+  <circle cx="410" cy="344" r="2" fill="#334155"/>
+  <text x="420" y="350" fill="#475569" font-size="15"
+        font-family="'Segoe UI', Arial, sans-serif">
+    PHP 8.3+
+  </text>
+  <circle cx="488" cy="344" r="2" fill="#334155"/>
+  <text x="498" y="350" fill="#475569" font-size="15"
+        font-family="'Segoe UI', Arial, sans-serif">
+    Laravel 12 &amp; 13
+  </text>
+  <circle cx="602" cy="344" r="2" fill="#334155"/>
+  <text x="612" y="350" fill="#475569" font-size="15"
+        font-family="'Segoe UI', Arial, sans-serif">
+    MIT License
+  </text>
+
+  <!-- Vertical divider -->
+  <line x1="920" y1="60" x2="920" y2="440" stroke="#ffffff0d" stroke-width="1"/>
+
+  <!-- Terminal window -->
+  <rect x="945" y="55" width="240" height="390" rx="10" fill="url(#termBg)" stroke="#ffffff12" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <rect x="945" y="55" width="240" height="36" rx="10" fill="#252d3d"/>
+  <rect x="945" y="71" width="240" height="20" fill="#252d3d"/>
+
+  <!-- Traffic lights -->
+  <circle cx="970" cy="73" r="5.5" fill="#ff5f57"/>
+  <circle cx="988" cy="73" r="5.5" fill="#febc2e"/>
+  <circle cx="1006" cy="73" r="5.5" fill="#28c840"/>
+
+  <!-- Terminal label -->
+  <text x="1065" y="77" fill="#4b5563" font-size="11" text-anchor="middle"
+        font-family="'Courier New', Courier, monospace">ship:check</text>
+
+  <!-- Terminal content -->
+  <text x="960" y="115" fill="#e2e8f0" font-size="10.5" font-weight="bold"
+        font-family="'Courier New', Courier, monospace">  ShipReady Report</text>
+
+  <!-- Score line -->
+  <text x="960" y="136" fill="#64748b" font-size="10"
+        font-family="'Courier New', Courier, monospace">  Score</text>
+  <text x="1003" y="136" fill="#ef4444" font-size="10"
+        font-family="'Courier New', Courier, monospace">████</text>
+  <text x="1028" y="136" fill="#1e293b" font-size="10"
+        font-family="'Courier New', Courier, monospace">████████████████</text>
+  <text x="1131" y="136" fill="#ef4444" font-size="10"
+        font-family="'Courier New', Courier, monospace">20/100</text>
+
+  <!-- Blank line -->
+  <text x="960" y="158" fill="#64748b" font-size="10" font-weight="bold"
+        font-family="'Courier New', Courier, monospace">  SECURITY</text>
+
+  <text x="960" y="175" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  &#x2716; CRITICAL</text>
+  <text x="960" y="188" fill="#94a3b8" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [SEC001] APP_DEBUG on</text>
+
+  <text x="960" y="203" fill="#ef4444" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  &#x2716; HIGH</text>
+  <text x="960" y="216" fill="#94a3b8" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [SEC010] No throttle</text>
+
+  <text x="960" y="232" fill="#fbbf24" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  &#x25B2; MEDIUM</text>
+  <text x="960" y="245" fill="#94a3b8" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [SEC014] No CSP header</text>
+
+  <line x1="960" y1="256" x2="1170" y2="256" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="960" y="272" fill="#64748b" font-size="10" font-weight="bold"
+        font-family="'Courier New', Courier, monospace">  RELIABILITY</text>
+
+  <text x="960" y="289" fill="#fbbf24" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  &#x25B2; MEDIUM</text>
+  <text x="960" y="302" fill="#94a3b8" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [REL015] No monitoring</text>
+
+  <text x="960" y="317" fill="#60a5fa" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  &#x25CF; LOW</text>
+  <text x="960" y="330" fill="#94a3b8" font-size="9"
+        font-family="'Courier New', Courier, monospace">    [REL017] No backups</text>
+
+  <line x1="960" y1="343" x2="1170" y2="343" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Summary -->
+  <text x="960" y="362" fill="#64748b" font-size="9.5"
+        font-family="'Courier New', Courier, monospace">  Found 24 issues:</text>
+  <text x="960" y="377" fill="#ef4444" font-size="9"
+        font-family="'Courier New', Courier, monospace">  2 critical  6 high</text>
+  <text x="960" y="392" fill="#fbbf24" font-size="9"
+        font-family="'Courier New', Courier, monospace">  12 medium  4 low</text>
+  <text x="960" y="410" fill="#334155" font-size="9"
+        font-family="'Courier New', Courier, monospace">  Done in 3.24s</text>
+
+</svg>
