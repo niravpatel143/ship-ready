@@ -6,6 +6,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.1.1] — 2026-10-03
+
+### Fixed
+- `--changed` flag now correctly filters CodeAnalyzer to only the modified PHP files (was computed but never wired through to the analyzer)
+- `ship:baseline` no longer crashes with "An option named 'env' already exists" — renamed `--env` to `--target-env` in the command signature
+- `ConsoleReporter` header now displays `v1.1.0` version and renders `VERSION SPECIFIC` without underscore
+- `ship:explain` now shows real remediation content for SEC001, SEC019, SEC020, OCT001, TEN001, INF001, INF002, QUE002, LW001
+- README check count corrected from 117 to 111
+
+### Tests
+- Added 63 new tests (67 total): Filter, ConsoleReporter, CodeAnalyzer, OCT001, INF001, INF002, QUE002, BaselineCommand
+
 ## [1.1.0] — 2026-10-02
 
 ### Added
