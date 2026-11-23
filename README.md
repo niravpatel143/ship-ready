@@ -461,7 +461,17 @@ php artisan ship:install --workflow
 Bug reports and pull requests are welcome on [GitHub](https://github.com/nivoin/ship-ready).
 
 ## License
+## ☕ Support This Project
 
+If Laravel Smart OCR helps you in your projects, saves development time, or makes your workflow easier, consider supporting its development.
+
+Your support motivates me to maintain the package, fix bugs, improve existing features, and build more useful tools for the Laravel community.
+
+Every coffee makes a difference. Thank you for your support! ❤️
+
+<a href="https://buymeacoffee.com/goriyanira5" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50">
+</a>
 MIT — see [LICENSE](LICENSE)
 
 ---
